@@ -54,6 +54,15 @@ ln -sf  "%{prefix}/docker-build.sh"     "${RPM_BUILD_ROOT}%{_bindir}/docker-buil
 ln -sf  "%{prefix}/docker-rmi-all.sh"   "${RPM_BUILD_ROOT}%{_bindir}/docker-rmi-all"
 ln -sf  "%{prefix}/docker-list.sh"      "${RPM_BUILD_ROOT}%{_bindir}/docker-list"
 ln -sf  "%{prefix}/docker-list-all.sh"  "${RPM_BUILD_ROOT}%{_bindir}/docker-list-all"
+# create config file
+%{__cat} <<EOF >"${RPM_BUILD_ROOT}%{_sysconfdir}/docker-scripts.conf"
+#!/bin/sh
+
+DOCKER_IMAGE_ORG='poixson'
+EOF
+%{__chmod} 0555 \
+	"${RPM_BUILD_ROOT}%{_sysconfdir}/docker-scripts.conf" \
+		|| exit 1
 
 
 
@@ -84,3 +93,4 @@ fi
 %{_bindir}/docker-rmi-all
 %{_bindir}/docker-list
 %{_bindir}/docker-list-all
+%config %{_sysconfdir}/docker-scripts.conf
