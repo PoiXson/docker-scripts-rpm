@@ -9,6 +9,7 @@ BuildArch: noarch
 Prefix: %{_bindir}/docker-scripts
 %define  _rpmfilename  %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
 Requires: docker-engine
+Requires: shellscripts
 
 %description
 Tools and scripts for managing docker images and containers.
