@@ -37,6 +37,7 @@ echo "Install.."
 for scriptfile in \
 	docker-start.sh    \
 	docker-stop.sh     \
+	docker-console.sh  \
 	docker-build.sh    \
 	docker-rmi-all.sh  \
 	docker-list.sh     \
@@ -50,6 +51,7 @@ done
 # alias symlinks
 ln -sf  "%{prefix}/docker-start.sh"     "${RPM_BUILD_ROOT}%{_bindir}/docker-start"
 ln -sf  "%{prefix}/docker-stop.sh"      "${RPM_BUILD_ROOT}%{_bindir}/docker-stop"
+ln -sf  "%{prefix}/docker-console.sh"   "${RPM_BUILD_ROOT}%{_bindir}/docker-console"
 ln -sf  "%{prefix}/docker-build.sh"     "${RPM_BUILD_ROOT}%{_bindir}/docker-build"
 ln -sf  "%{prefix}/docker-rmi-all.sh"   "${RPM_BUILD_ROOT}%{_bindir}/docker-rmi-all"
 ln -sf  "%{prefix}/docker-list.sh"      "${RPM_BUILD_ROOT}%{_bindir}/docker-list"
@@ -83,12 +85,14 @@ fi
 %defattr(-,root,root,-)
 %{prefix}/docker-start.sh
 %{prefix}/docker-stop.sh
+%{prefix}/docker-console.sh
 %{prefix}/docker-build.sh
 %{prefix}/docker-rmi-all.sh
 %{prefix}/docker-list.sh
 %{prefix}/docker-list-all.sh
 %{_bindir}/docker-start
 %{_bindir}/docker-stop
+%{_bindir}/docker-console
 %{_bindir}/docker-build
 %{_bindir}/docker-rmi-all
 %{_bindir}/docker-list
