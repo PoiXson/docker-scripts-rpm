@@ -23,10 +23,10 @@ source /etc/docker-scripts.conf
 NAME=''
 IMAGE_NAME=''
 IMAGE_NAME_TAG=''
-IMAGE_VERSION='0.1.0'
-function get_image_name() {
+IMAGE_VERSION=''
+function get_image_info() {
 	# get name comment from file
-	local line=$(head -n 1 "${PWD}/Dockerfile")
+	local line=$(head -n1 "${PWD}/Dockerfile")
 	if [[ $line == "# name: "* ]]; then
 		NAME=`echo "${line}" | rev | cut -d: -f1 | rev | xargs`
 	else
@@ -43,8 +43,20 @@ function get_image_name() {
 		IMAGE_NAME="${DOCKER_IMAGE_ORG}/${NAME}"
 		IMAGE_NAME_TAG="${IMAGE_NAME}:${IMAGE_VERSION}"
 	fi
+	# get version comment from file
+	local line=$(head -n2 "${PWD}/Dockerfile" | tail -n1)
+	if [[ $line == "# version: "* ]]; then
+		IMAGE_VERSION=`echo "${line}" | rev | cut -d: -f1 | rev | xargs`
+	else
+		echo 'Version comment not found in Dockerfile!'
+		exit 1
+	fi
+	if [ -z $IMAGE_VERSION ]; then
+		echo 'Failed to find image version from Dockerfile!'
+		exit 1
+	fi
 }
-get_image_name
+get_image_info
 echo
 echo 'Creating docker image..'
 if [ -z $DOCKER_IMAGE_ORG ]; then
