@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
+source /usr/bin/docker-scripts/docker-common.sh
 
-source /usr/bin/shellscripts/common.sh
 
 
 

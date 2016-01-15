@@ -1,8 +1,8 @@
 #!/bin/bash
 clear
 
-source /usr/bin/shellscripts/common.sh
 
+source /usr/bin/docker-scripts/docker-common.sh
 
 
 PWD=`pwd`

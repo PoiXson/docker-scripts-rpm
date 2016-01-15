@@ -35,6 +35,7 @@ echo "Install.."
 		|| exit 1
 # copy script files
 for scriptfile in \
+	docker-common.sh   \
 	docker-start.sh    \
 	docker-stop.sh     \
 	docker-console.sh  \
@@ -83,6 +84,7 @@ fi
 ### Files ###
 %files
 %defattr(-,root,root,-)
+%{prefix}/docker-common.sh
 %{prefix}/docker-start.sh
 %{prefix}/docker-stop.sh
 %{prefix}/docker-console.sh
