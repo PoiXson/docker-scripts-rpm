@@ -57,11 +57,21 @@ ln -sf  "%{prefix}/docker-build.sh"     "${RPM_BUILD_ROOT}%{_bindir}/docker-buil
 ln -sf  "%{prefix}/docker-rmi-all.sh"   "${RPM_BUILD_ROOT}%{_bindir}/docker-rmi-all"
 ln -sf  "%{prefix}/docker-list.sh"      "${RPM_BUILD_ROOT}%{_bindir}/docker-list"
 ln -sf  "%{prefix}/docker-list-all.sh"  "${RPM_BUILD_ROOT}%{_bindir}/docker-list-all"
-# create config file
+
+# create config and profile.d files
 %{__cat} <<EOF >"${RPM_BUILD_ROOT}%{_sysconfdir}/docker-scripts.conf"
 #!/bin/sh
 
 DOCKER_IMAGE_ORG='poixson'
+EOF
+%{__cat} <<EOF >"${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d/docker-aliases.sh"
+#!/bin/sh
+
+alias docker-start='clear;docker-start'
+alias docker-stop='clear;docker-stop'
+alias docker-rmi-all='clear;docker-rmi-all'
+alias docker-list='clear;docker-list'
+alias docker-list-all='clear;docker-list-all'
 EOF
 %{__chmod} 0555 \
 	"${RPM_BUILD_ROOT}%{_sysconfdir}/docker-scripts.conf" \
@@ -99,4 +109,5 @@ fi
 %{_bindir}/docker-rmi-all
 %{_bindir}/docker-list
 %{_bindir}/docker-list-all
+%{_sysconfdir}/profile.d/docker-aliases.sh
 %config %{_sysconfdir}/docker-scripts.conf
