@@ -62,7 +62,7 @@ ln -sf  "%{prefix}/docker-list-all.sh"  "${RPM_BUILD_ROOT}%{_bindir}/docker-list
 %{__cat} <<EOF >"${RPM_BUILD_ROOT}%{_sysconfdir}/docker-scripts.conf"
 #!/bin/sh
 
-DOCKER_IMAGE_ORG='poixson'
+#DOCKER_ORG='poixson'
 EOF
 %{__cat} <<EOF >"${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d/docker-aliases.sh"
 #!/bin/sh
