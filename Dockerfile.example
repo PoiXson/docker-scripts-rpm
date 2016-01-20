@@ -1,0 +1,14 @@
+# name: exampleimage
+# version: 0.1.0
+FROM centos:7
+MAINTAINER LorenzoP <lorenzo@poixson.com>
+
+RUN yum update -y
+RUN yum install -y http://yum.poixson.com/latest.rpm
+RUN yum install -y shellscripts
+
+RUN echo -e "\nexport TERM=xterm" >> ~/.bashrc
+
+#VOLUME /data
+
+ENTRYPOINT /usr/bin/bash
