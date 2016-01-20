@@ -1,12 +1,10 @@
 #!/bin/bash
-clear
 source /usr/bin/docker-scripts/docker-common.sh
 
 
 
-
 if [ ! -f /etc/docker-scripts.conf ]; then
-	echo '/etc/docker-scripts.conf file not found!'
+	errcho '/etc/docker-scripts.conf file not found!'
 	exit 1
 fi
 source /etc/docker-scripts.conf

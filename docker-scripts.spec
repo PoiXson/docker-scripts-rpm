@@ -62,7 +62,7 @@ ln -sf  "%{prefix}/docker-list-all.sh"  "${RPM_BUILD_ROOT}%{_bindir}/docker-list
 %{__cat} <<EOF >"${RPM_BUILD_ROOT}%{_sysconfdir}/docker-scripts.conf"
 #!/bin/sh
 
-#DOCKER_ORG='poixson'
+#DOCKER_IMAGE_ORG='poixson'
 EOF
 %{__cat} <<EOF >"${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d/docker-aliases.sh"
 #!/bin/sh
@@ -75,6 +75,7 @@ alias docker-list-all='clear;docker-list-all'
 EOF
 %{__chmod} 0555 \
 	"${RPM_BUILD_ROOT}%{_sysconfdir}/docker-scripts.conf" \
+	"${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d/docker-aliases.sh" \
 		|| exit 1
 
 
